@@ -14,3 +14,5 @@ def create_enemy():
 
 create_enemy()
 
+# jdeme na to 
+
