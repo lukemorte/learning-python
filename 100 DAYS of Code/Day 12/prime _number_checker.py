@@ -1,4 +1,12 @@
 
+def is_number_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, n):
+        if n % i == 0:
+            return False
+    return True
+
 quit_app = False
 
 while quit_app == False:
@@ -7,12 +15,9 @@ while quit_app == False:
     
     if num != 'q':
         num = int(num)
-        prime = True
+        prime = True        
 
-        for i in range(2, num):
-            if num % i == 0:
-                prime = False
-                
+        prime = is_number_prime(num)          
         if prime:
             print(f"Number {num} IS a PRIME number.")
         else:
