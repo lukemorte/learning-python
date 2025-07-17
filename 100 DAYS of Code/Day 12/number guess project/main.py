@@ -23,13 +23,26 @@ def set_difficulty():
 
 secret_number = None
 attempts = None
+game_over = False
 
 
 show_welcome_screen()
 secret_number = set_secret_number(range(0, 100))
 attempts = set_difficulty()
 
-print(f"You have {attempts} attempts.")
+print(f"You have {attempts} attempts remaining to guess the number.")
 
+while attempts > 0 and game_over == False:
+    print(f"#secret_number = {secret_number}")
+    guess = int(input("Make a guess: "))
+
+    if guess > secret_number:
+        print("Too hight.")
+    elif guess < secret_number:
+        print("Too low.")
+    else:
+        print(f"You got it! The answer was {secret_number}.")
+        game_over = True
+    attempts -= 1
 
 
