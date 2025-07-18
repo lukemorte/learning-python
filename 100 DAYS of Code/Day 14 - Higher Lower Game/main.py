@@ -28,19 +28,20 @@ def fill_second_person(arr):
     if len(arr) > 1:
         arr[1] = p2
     else:
-        arr.append(p2)    
+        arr.append(p2)
+        
+
+def format_data(person):
+    person_name = person["name"]
+    person_profession = person["profession"]
+    person_country = person["country"]    
+    return f"{person_name}, {person_profession}, from {person_country}."
 
 
 def show_question(persons):
-    print(f"Compare A: {persons[0]["name"]}, "
-          f"{persons[0]["profession"]}, "
-          f"from {persons[0]["country"]}.")
-
+    print("Compare A: " + format_data(persons[0]))
     print(art.logo_vs)
-
-    print(f"Against B: {persons[1]['name']}, "
-          f"{persons[1]['profession']}, "
-          f"from {persons[1]['country']}.")
+    print("Compare B: " + format_data(persons[1]))
 
     if TESTING:
         test_winner = max(persons, key=lambda n: n['followers'])
