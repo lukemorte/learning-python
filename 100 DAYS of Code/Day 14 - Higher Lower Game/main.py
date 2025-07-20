@@ -28,19 +28,21 @@ def fill_second_person(arr):
     if len(arr) > 1:
         arr[1] = p2
     else:
-        arr.append(p2)    
+        arr.append(p2)
+        
+
+def format_data(person):
+    person_name = person["name"]
+    person_profession = person["profession"]
+    person_country = person["country"]    
+    return f"{person_name}, {person_profession}, from {person_country}."
 
 
 def show_question(persons):
-    print(f"Compare A: {persons[0]["name"]}, "
-          f"{persons[0]["profession"]}, "
-          f"from {persons[0]["country"]}.")
 
+    print(f"Compare A: {format_data(persons[0])}")
     print(art.logo_vs)
-
-    print(f"Against B: {persons[1]['name']}, "
-          f"{persons[1]['profession']}, "
-          f"from {persons[1]['country']}.")
+    print(f"Compare B: {format_data(persons[1])}")
 
     if TESTING:
         test_winner = max(persons, key=lambda n: n['followers'])
@@ -53,6 +55,16 @@ def get_answer():
     while answer.lower() != 'a' and answer.lower() != 'b':
         answer = input("Who has more followers? Type 'A' or 'B': ")
     return answer.lower()
+
+
+def check_answer(answer, persons):
+    f1 = persons[0]["followers"]
+    f2 = persons[1]["followers"]
+
+    if f1 > f2:
+        return answer == 'a'
+    else:
+        return answer == 'b'
 
 
 def play_game():
@@ -72,10 +84,7 @@ def play_game():
         show_question(two_persons)
         answer = get_answer()
 
-        if (
-            answer == 'a' and two_persons[0]['followers'] > two_persons[1]['followers']) or (
-            answer == 'b' and two_persons[1]['followers'] > two_persons[0]['followers']
-        ):
+        if check_answer(answer, two_persons):
             score += 1
             two_persons[0] = two_persons[1]
             fill_second_person(two_persons)
